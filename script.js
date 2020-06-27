@@ -1,69 +1,38 @@
-var form= document.getElementById('addForm');
-var itemList= document.getElementById('items');
-var filter=document.getElementById('filter');
-const done = document.querySelectorAll(".done");
-done.forEach(
-  function(done) {
-   done.addEventListener("click", checked,false);
+// Set a variable for our button element.
+const scrollToTopButton = document.getElementById('js-top');
+
+// Let's set up a function that shows our scroll-to-top button if we scroll beyond the height of the initial window.
+const scrollFunc = () => {
+  // Get the current scroll value
+  let y = window.scrollY;
+  
+  // If the scroll value is greater than the window height, let's add a class to the scroll-to-top button to show it!
+  if (y > 0) {
+    scrollToTopButton.className = "top-link show";
+  } else {
+    scrollToTopButton.className = "top-link hide";
   }
-);
+};
 
-// var DLT=document.querySelectorAll(".delete");
-//form submit event
-form.addEventListener('submit',addItem);
+window.addEventListener("scroll", scrollFunc);
 
-//delete event
-itemList.addEventListener('click',removeItem);
-//filter elements
-filter.addEventListener('keyup',filterItems)
-//Add item
-function addItem (e){
-    e.preventDefault();
-    
-    //get input value
-    var newItem=document.getElementById('item').value;
-    var li=document.createElement('li');
-    li.className='list-group-item';
-    var newItemtext=document.createTextNode(newItem);
-    li.appendChild(newItemtext);
-    var deleteBtn = document.createElement('button');
-    deleteBtn.className='btn btn-danger btn-sm float-right delete';
-    deleteBtn.appendChild(document.createTextNode('X'));
-    li.appendChild(deleteBtn);
-    itemList.appendChild(li);
+const scrollToTop = () => {
+  // Let's set a variable for the number of pixels we are from the top of the document.
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+  
+  // If that number is greater than 0, we'll scroll back to 0, or the top of the document.
+  // We'll also animate that scroll with requestAnimationFrame:
+  // https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+  if (c > 0) {
+    window.requestAnimationFrame(scrollToTop);
+    // ScrollTo takes an x and a y coordinate.
+    // Increase the '10' value to get a smoother/slower scroll!
+    window.scrollTo(0, c - c / 10);
+  }
+};
+
+// When the button is clicked, run our ScrolltoTop function above!
+scrollToTopButton.onclick = function(e) {
+  e.preventDefault();
+  scrollToTop();
 }
-
-//remove Item
-function removeItem(e){
-    if(e.target.classList.contains('delete')){
-        if(confirm('Are You Sure?')){
-            var li=e.target.parentElement;
-            itemList.removeChild(li);
-        }
-    }
-}
-
-//Filtering items
-function filterItems(e){
-    // convert text to lowercase
-    var text = e.target.value.toLowerCase();
-    // Get lis
-    var items = itemList.getElementsByTagName('li');
-    // Convert to an array
-    Array.from(items).forEach(function(item){
-      var itemName = item.firstChild.textContent;
-      if(itemName.toLowerCase().indexOf(text) != -1){
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  }
-  function checked(e){
-    if(e.target.checked){
-      e.target.parentElement.classList.add("checkthrough");
-      console.log(e.target.parentElement.className);
-    }else{
-      e.target.parentElement.className="list-group-item";
-    }
-  }
