@@ -11,7 +11,7 @@ body{
 }
 .navbar{
     background: #318FB6;
-    height: 70px;
+    
 }
 .navbar a{
     font-size: 1.2em;
@@ -21,6 +21,43 @@ body{
 .dropdown-menu{
     background: #318FB6;
 }
+/*BACK TO TOP*/
+.top-link {
+    transition: all .25s ease-in-out;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: inline-flex;
+    
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      margin: 0 3em 3em 0;
+      border: solid 2px rgba(255,115,0,1);
+      border-radius: 50%;
+      color: rgba(255,115,0,1);
+      padding: .25em;
+      width: 80px;
+      height: 80px;
+    background-color: #F8F8F8;
+}
+    
+.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+  
+.top-link:hover {
+    background-color: #E8E8E8;
+    text-decoration: none;
+    color: black;
+}
+/*End of back to top*/
 #Heading{
     background-image: url(img/2437.jpg);
     background-repeat: no-repeat;
@@ -105,48 +142,7 @@ body{
     left: 0;
 }
 /*MAIN PAGE END*/
-/*BACK TO TOP*/
-.top-link {
-    transition: all .25s ease-in-out;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    display: inline-flex;
-    
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      margin: 0 3em 3em 0;
-      border: solid 2px rgba(255,115,0,1);
-      border-radius: 50%;
-      color: rgba(255,115,0,1);
-      padding: .25em;
-      width: 80px;
-      height: 80px;
-    background-color: #F8F8F8;
-}
-    
-.show {
-    visibility: visible;
-    opacity: 1;
-}
 
-.hide {
-    visibility: hidden;
-    opacity: 0;
-}
-  
-svg {
-    fill: #000;
-    width: 24px;
-    height: 12px;
-}
-  
-.top-link:hover {
-    background-color: #E8E8E8;
-    text-decoration: none;
-    color: black;
-}
 
 @media(max-width:575px){
     #strokes_logo{
